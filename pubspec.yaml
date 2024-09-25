@@ -38,6 +38,14 @@ dependencies:
   awesome_notifications: ^0.9.3+1
   awesome_notifications_core: ^0.9.3
   get: ^4.6.6
+  retrofit: ^4.4.1
+  logger: ^2.4.0
+  json_annotation: ^4.9.0
+  build_runner: ^2.4.9
+  json_serializable: ^6.8.0
+  dio: ^5.7.0
+  retrofit_generator: ^8.2.1
+  webview_flutter: ^4.8.0
 
 dev_dependencies:
   flutter_test:
