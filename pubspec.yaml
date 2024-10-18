@@ -44,8 +44,12 @@ dependencies:
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
   dio: ^5.7.0
-  retrofit_generator: ^8.2.1
   webview_flutter: ^4.8.0
+  midtrans_client_flutter:
+    git:
+      url: https://github.com/NichoAdhyatma/midtrans_client_flutter
+      ref: 8ede666c75f4a9594e81445afd9497a49733f86c
+  pretty_dio_logger: ^1.4.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'payment_remote.dart';
+part of 'product_remote.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'payment_remote.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _PaymentRemote implements PaymentRemote {
-  _PaymentRemote(
+class _ProductRemote implements ProductRemote {
+  _ProductRemote(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
@@ -22,55 +22,29 @@ class _PaymentRemote implements PaymentRemote {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SnapModel> snap(PaymentRequest body) async {
+  Future<GetAllProductsModel> getAllProducts(
+    CancelToken cancelToken,
+    int limit,
+    int skip,
+  ) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _options = _setStreamType<SnapModel>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/snap',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SnapModel _value;
-    try {
-      _value = SnapModel.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<TransactionStatusModel> getTransactionStatus(String orderId) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'skip': skip,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<TransactionStatusModel>(Options(
+    final _options = _setStreamType<GetAllProductsModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/payment/status/${orderId}',
+          '/products',
           queryParameters: queryParameters,
           data: _data,
+          cancelToken: cancelToken,
         )
         .copyWith(
             baseUrl: _combineBaseUrls(
@@ -78,9 +52,9 @@ class _PaymentRemote implements PaymentRemote {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late TransactionStatusModel _value;
+    late GetAllProductsModel _value;
     try {
-      _value = TransactionStatusModel.fromJson(_result.data!);
+      _value = GetAllProductsModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

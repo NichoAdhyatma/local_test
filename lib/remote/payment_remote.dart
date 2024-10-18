@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:period_notification/models/payment_request.dart';
 import 'package:period_notification/models/snap.dart';
+import 'package:period_notification/models/transaction_status.dart';
 import 'package:period_notification/remote/config.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -15,16 +16,15 @@ abstract class PaymentRemote {
     int connectTimeout = 30000,
     int receiveTimeout = 30000,
   }) {
-    Map<String, dynamic> baseHeader = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+    Map<String, dynamic> finalHeaders = {
+      ...Config.baseHeaders,
       ...headers,
     };
 
     Dio dio = Dio(BaseOptions(
       connectTimeout: Duration(milliseconds: connectTimeout),
       receiveTimeout: Duration(milliseconds: receiveTimeout),
-      headers: baseHeader,
+      headers: finalHeaders,
     ));
 
     return PaymentRemote(
@@ -35,6 +35,9 @@ abstract class PaymentRemote {
 
   @POST('/snap')
   Future<SnapModel> snap(@Body() PaymentRequest body);
+
+  @GET('/payment/status/{order_id}')
+  Future<TransactionStatusModel> getTransactionStatus(@Path('order_id') String orderId);
 }
 
 const createPaymentRemoteClient = PaymentRemote.create;

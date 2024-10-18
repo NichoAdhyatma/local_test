@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:period_notification/controller/payment_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentWebview extends StatefulWidget {
@@ -32,6 +35,15 @@ class _PaymentWebviewState extends State<PaymentWebview> {
       ),
     )
     ..loadRequest(Uri.parse(Get.arguments));
+
+  final PaymentController paymentController = Get.find<PaymentController>();
+
+  @override
+  void initState() {
+    log("Arguments: ${Get.arguments}");
+    paymentController.startPeriodicTransactionStatusCheck();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

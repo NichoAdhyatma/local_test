@@ -25,12 +25,12 @@ class HomePage extends StatelessWidget {
                   paymentController.createPaymentSnap(PaymentRequest(
                     transactionDetails: TransactionDetails(
                       orderId: Random().nextInt(10000).toString(),
-                      grossAmount: 10000,
+                      grossAmount: 100,
                     ),
                     itemDetails: [
                       ItemDetails(
                         id: '123',
-                        price: 10000,
+                        price: 100,
                         quantity: 1,
                         name: 'Kaos',
                       ),
@@ -46,10 +46,13 @@ class HomePage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  NotificationUtils().createNotification(
-                    id: Random().nextInt(10000),
-                    channelKey: 'basic_channel',
-                  );
+                  Get.toNamed('/products');
+                },
+                child: const Text('Products'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  NotificationUtils().awesomeNotifications.cancelAll();
                 },
                 child: const Text('Show Notification'),
               ),
